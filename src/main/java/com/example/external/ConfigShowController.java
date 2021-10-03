@@ -17,10 +17,20 @@ public class ConfigShowController {
 
     private String username;
 
+    @Autowired
+    private CommonProperties commonProperties;
+
     @GetMapping
     public ResponseEntity showConfig()
     {
-        return ResponseEntity.ok(username);
+
+        final StringBuilder output = new StringBuilder();
+        output.append("from app : ").append(username)
+                .append("  ===== ")
+                .append(" from common properties : ")
+                .append(commonProperties.getComment());
+
+        return ResponseEntity.ok(output.toString());
     }
 
 }
